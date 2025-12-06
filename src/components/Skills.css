@@ -1,0 +1,155 @@
+.skills {
+  background: var(--color-bg-primary);
+}
+
+.skills-intro {
+  text-align: center;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto var(--spacing-lg);
+  font-size: 1.1rem;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-md);
+}
+
+/* Skill Card */
+.skill-card {
+  background: var(--color-bg-card);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-bg-tertiary);
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-accent-primary);
+  box-shadow: var(--shadow-glow);
+}
+
+.skill-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--color-bg-tertiary);
+}
+
+.skill-icon {
+  font-size: 2rem;
+}
+
+.skill-card-header h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* Skill Items */
+.skill-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.skill-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.skill-name {
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.skill-percent {
+  color: var(--color-accent-primary);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.skill-bar {
+  height: 6px;
+  background: var(--color-bg-tertiary);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.skill-progress {
+  height: 100%;
+  background: var(--color-accent-gradient);
+  border-radius: 3px;
+  width: 0;
+  animation: progressFill 1.5s ease forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes progressFill {
+  to {
+    width: var(--progress);
+  }
+}
+
+/* Tech Icons Marquee */
+.tech-icons {
+  margin-top: var(--spacing-xl);
+  overflow: hidden;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    white 20%,
+    white 80%,
+    transparent
+  );
+}
+
+.tech-track {
+  display: flex;
+  gap: var(--spacing-lg);
+  animation: scroll 20s linear infinite;
+  width: max-content;
+}
+
+.tech-item {
+  white-space: nowrap;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius-sm);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
