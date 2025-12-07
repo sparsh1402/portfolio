@@ -10,7 +10,7 @@
  * - You can nest components inside other components
  */
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Hero from './components/Hero'
 import About from './components/About'
 import Skills from './components/Skills'
@@ -32,6 +32,41 @@ function App() {
    *   - initialValue: what the state starts as
    */
   const [activeSection, setActiveSection] = useState('home')
+
+  // Scroll spy: update activeSection based on which page section is visible
+  useEffect(() => {
+    const sectionIds = ['home', 'about', 'skills', 'projects', 'contact']
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean)
+
+    if (!sections.length || typeof IntersectionObserver === 'undefined') return
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      // Trigger when 50% of the section is visible
+      threshold: 0.5,
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      // Find the entry that's intersecting and has the largest intersectionRatio
+      const visible = entries
+        .filter((e) => e.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+
+      if (visible && visible.target && visible.target.id) {
+        setActiveSection(visible.target.id)
+      }
+    }, observerOptions)
+
+    sections.forEach((sec) => observer.observe(sec))
+
+    return () => {
+      sections.forEach((sec) => observer.unobserve(sec))
+      observer.disconnect()
+    }
+  }, [setActiveSection])
 
   return (
     /*
