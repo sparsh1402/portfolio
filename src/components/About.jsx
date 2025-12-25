@@ -70,10 +70,10 @@ function About() {
             </div>
 
             <div className="about-stats">
-              <div className="stat">
+              {/* <div className="stat">
                 <span className="stat-number">11M+</span>
                 <span className="stat-label">Users Supported</span>
-              </div>
+              </div> */}
               <div className="stat">
                 <span className="stat-number">400+</span>
                 <span className="stat-label">Problems Solved</span>
